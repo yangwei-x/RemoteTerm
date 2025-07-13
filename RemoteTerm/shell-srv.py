@@ -6,8 +6,8 @@ import socket
 import pty
 
 def usage(program):
-    print "Example(server-side) for remote terminal of QTermWidget."
-    print "Usage: %s ipaddr port" %program
+    print("Example(server-side) for remote terminal of QTermWidget.")
+    print("Usage: %s ipaddr port" % program)
 
 
 def main():
@@ -18,9 +18,9 @@ def main():
     try:
         s.bind((sys.argv[1], int(sys.argv[2])))
         s.listen(0)
-        print "[+]Start Server."
+        print("[+]Start Server.")
     except Exception as e:
-        print "[-]Error Happened: %s" %e.message
+        print("[-]Error Happened: %s" % e.message)
         sys.exit(2)
 
     while True:

@@ -16,9 +16,14 @@ RemoteTerm::RemoteTerm(const QString &ipaddr, quint16 port, QWidget *parent)
     // Read anything from remote terminal via socket and show it on widget.
     connect(socket,&QTcpSocket::readyRead,[this](){
         QByteArray data = socket->readAll();
-        write(this->getPtySlaveFd(), data.data(), data.size());
+        ssize_t written = write(this->getPtySlaveFd(), data.data(), data.size());
+        if (written < 0) {
+            qWarning() << "Error writing to pty:" << strerror(errno);
+        } else if (written < data.size()) {
+            qWarning() << "Incomplete write to pty:" << written << "of" << data.size() << "bytes";
+        }
     });
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(atError()));
+    connect(socket, &QTcpSocket::errorOccurred, this, &RemoteTerm::atError);
 
     // Here we start an empty pty.
     this->startTerminalTeletype();

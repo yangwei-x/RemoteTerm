@@ -31,7 +31,18 @@ SOURCES += \
 HEADERS += \
     remoteterm.h
 
-unix:!macx: LIBS += -L$$PWD/qtermwidget/build -lqtermwidget6
-INCLUDEPATH += $$PWD/qtermwidget/lib
-INCLUDEPATH += $$PWD/qtermwidget/build/lib
-unix:!macx: LIBS += -lutil
+win32 {
+    # Windows特定配置
+    LIBS += -lqtermwidget6
+    # 可能需要指定qtermwidget的路径
+    INCLUDEPATH += C:/path/to/qtermwidget/include
+    LIBS += -LC:/path/to/qtermwidget/lib
+} else:unix:!macx {
+    # Unix特定配置(保留原有配置)
+    LIBS += -lqtermwidget6 -lutil
+    INCLUDEPATH += qtermwidget/lib qtermwidget/build/lib
+} else:macx {
+    # macOS特定配置
+    LIBS += -lqtermwidget6
+    INCLUDEPATH += /usr/local/include/qtermwidget6
+}

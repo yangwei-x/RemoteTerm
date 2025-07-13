@@ -3,7 +3,10 @@
 import sys
 import os
 import socket
-import pty
+
+
+is_windows = sys.platform.startswith('win')
+
 
 def usage(program):
     print("Example(server-side) for remote terminal of QTermWidget.")
@@ -29,9 +32,13 @@ def main():
         os.dup2(c[0].fileno(), 1)
         os.dup2(c[0].fileno(), 2)
 
-        # It's important to use pty to spawn the shell.
-        pty.spawn("/bin/sh")
-        c[0].close()
+        if is_windows:
+            pass
+        else:
+            import pty
+            # It's important to use pty to spawn the shell.
+            pty.spawn("/bin/sh")
+            c[0].close()
     
 if __name__ == "__main__":
     main()

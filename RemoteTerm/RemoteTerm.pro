@@ -31,7 +31,7 @@ SOURCES += \
 HEADERS += \
     remoteterm.h
 
-unix:!macx: LIBS += -L$$PWD/../build -lqtermwidget6
-INCLUDEPATH += $$PWD/../lib
-INCLUDEPATH += $$PWD/../build/lib
+unix:!macx: LIBS += -L$$PWD/qtermwidget/build -lqtermwidget6
+INCLUDEPATH += $$PWD/qtermwidget/lib
+INCLUDEPATH += $$PWD/qtermwidget/build/lib
 unix:!macx: LIBS += -lutil

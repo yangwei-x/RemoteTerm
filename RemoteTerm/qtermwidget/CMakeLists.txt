@@ -153,6 +153,12 @@ set_target_properties( ${QTERMWIDGET_LIBRARY_NAME} PROPERTIES
                        VERSION ${QTERMWIDGET_VERSION}
                      )
 
+# Ensure generated headers are found
+target_include_directories(${QTERMWIDGET_LIBRARY_NAME} PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_BINARY_DIR}/lib
+)
+
 
 if(APPLE)
     target_compile_definitions(${QTERMWIDGET_LIBRARY_NAME}

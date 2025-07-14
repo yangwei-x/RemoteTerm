@@ -2,3 +2,7 @@ git.diff
 
 
 **/build
+
+
+# QtCreator project files
+*.user

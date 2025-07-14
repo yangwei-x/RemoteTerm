@@ -5,9 +5,11 @@ project(RemoteTerm)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Enable automatic processing of .ui files
+set(CMAKE_AUTOUIC ON)
+
 # Find Qt packages
 find_package(Qt6 COMPONENTS Core Gui Widgets Network REQUIRED)
-find_package(qtermwidget6 REQUIRED)
 
 # Enable AUTOMOC for Qt classes
 set(CMAKE_AUTOMOC ON)
@@ -20,7 +22,9 @@ set(SOURCES
 )
 
 # Create executable
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${SOURCES}
+    mainwindow.h mainwindow.cpp mainwindow.ui
+)
 
 # Link libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -30,6 +34,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Network
     qtermwidget6
 )
+
+# Use embedded qtermwidget
+add_subdirectory(qtermwidget)
 
 # Platform specific config
 if(WIN32)

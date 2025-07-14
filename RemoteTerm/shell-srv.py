@@ -37,8 +37,9 @@ def main():
         else:
             import pty
             # It's important to use pty to spawn the shell.
-            pty.spawn("/bin/sh")
+            pty.spawn("/bin/bash")
             c[0].close()
-    
+
+
 if __name__ == "__main__":
     main()

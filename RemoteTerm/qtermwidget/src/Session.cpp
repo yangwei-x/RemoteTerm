@@ -37,7 +37,7 @@
 #include <QtDebug>
 #include <QRegularExpression>
 
-#include "Pty.h"
+#include "platform/Pty.h"
 //#include "kptyprocess.h"
 #include "TerminalDisplay.h"
 #include "ShellCommand.h"

@@ -27,7 +27,7 @@
 */
 
 // Own
-#include "Pty.h"
+#include "platform/Pty.h"
 
 // System
 #include <sys/types.h>
@@ -41,8 +41,8 @@
 #include <QStringList>
 #include <QtDebug>
 
-#include "kpty.h"
-#include "kptydevice.h"
+#include "platform/kpty.h"
+#include "platform/kptydevice.h"
 
 using namespace Konsole;
 

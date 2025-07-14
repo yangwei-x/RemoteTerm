@@ -13,6 +13,13 @@ int main(int argc, char *argv[])
     QString ipaddr = a.arguments().at(1);
     quint16 port = a.arguments().at(2).toUShort();
     RemoteTerm w(ipaddr,port);
+    // 你可以设置一些初始属性
+    QFont font = QApplication::font();
+    font.setFamily("Monospace"); // 使用等宽字体
+    font.setPointSize(11);
+    w.setTerminalFont(font);
+    w.setColorScheme("Linux"); // 设置颜色方案
+
     w.show();
 
     return a.exec();

@@ -27,7 +27,7 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include "kprocess.h"
+#include "platform/kprocess.h"
 
 #include <qfile.h>
 

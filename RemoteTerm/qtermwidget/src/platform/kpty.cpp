@@ -22,7 +22,7 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "kpty_p.h"
+#include "platform/kpty_p.h"
 
 #include <QtDebug>
 

@@ -28,9 +28,9 @@
 */
 
 
-#include "kptyprocess.h"
-#include "kprocess.h"
-#include "kptydevice.h"
+#include "platform/kptyprocess.h"
+#include "platform/kprocess.h"
+#include "platform/kptydevice.h"
 
 #include <cstdlib>
 #include <unistd.h>

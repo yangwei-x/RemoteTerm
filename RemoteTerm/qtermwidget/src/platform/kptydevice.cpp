@@ -29,8 +29,8 @@
    Boston, MA 02110-1301, USA.
 */
 
-#include "kptydevice.h"
-#include "kpty_p.h"
+#include "platform/kptydevice.h"
+#include "platform/kpty_p.h"
 
 #include <QSocketNotifier>
 

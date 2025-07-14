@@ -31,6 +31,7 @@
 
 #include "Emulation.h"
 #include "History.h"
+#include "platform/Pty.h"
 
 class KProcess;
 

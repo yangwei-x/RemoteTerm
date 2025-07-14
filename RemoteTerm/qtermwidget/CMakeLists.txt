@@ -61,46 +61,46 @@ set(QTERMWIDGET_LIBRARY_NAME qtermwidget6)
 # main library
 
 set(SRCS
-    lib/BlockArray.cpp
-    lib/ColorScheme.cpp
-    lib/Emulation.cpp
-    lib/Filter.cpp
-    lib/History.cpp
-    lib/HistorySearch.cpp
-    lib/KeyboardTranslator.cpp
-    lib/konsole_wcwidth.cpp
-    lib/kprocess.cpp
-    lib/kpty.cpp
-    lib/kptydevice.cpp
-    lib/kptyprocess.cpp
-    lib/Pty.cpp
-    lib/qtermwidget.cpp
-    lib/Screen.cpp
-    lib/ScreenWindow.cpp
-    lib/SearchBar.cpp
-    lib/Session.cpp
-    lib/ShellCommand.cpp
-    lib/TerminalCharacterDecoder.cpp
-    lib/TerminalDisplay.cpp
-    lib/tools.cpp
-    lib/Vt102Emulation.cpp
+    src/BlockArray.cpp
+    src/ColorScheme.cpp
+    src/Emulation.cpp
+    src/Filter.cpp
+    src/History.cpp
+    src/HistorySearch.cpp
+    src/KeyboardTranslator.cpp
+    src/konsole_wcwidth.cpp
+    src/qtermwidget.cpp
+    src/Screen.cpp
+    src/ScreenWindow.cpp
+    src/SearchBar.cpp
+    src/Session.cpp
+    src/ShellCommand.cpp
+    src/TerminalCharacterDecoder.cpp
+    src/TerminalDisplay.cpp
+    src/tools.cpp
+    src/Vt102Emulation.cpp
+    src/platform/kprocess.cpp
+    src/platform/kpty.cpp
+    src/platform/kptydevice.cpp
+    src/platform/kptyprocess.cpp
+    src/platform/Pty.cpp
 )
 
 # Only the Headers that need to be moc'd go here
 set(HDRS
-    lib/Emulation.h
-    lib/Filter.h
-    lib/HistorySearch.h
-    lib/kprocess.h
-    lib/kptydevice.h
-    lib/kptyprocess.h
-    lib/Pty.h
-    lib/qtermwidget.h
-    lib/ScreenWindow.h
-    lib/SearchBar.h
-    lib/Session.h
-    lib/TerminalDisplay.h
-    lib/Vt102Emulation.h
+    include/Emulation.h
+    include/Filter.h
+    include/HistorySearch.h
+    include/platform/kprocess.h
+    include/platform/kptydevice.h
+    include/platform/kptyprocess.h
+    include/platform/Pty.h
+    include/qtermwidget.h
+    include/ScreenWindow.h
+    include/SearchBar.h
+    include/Session.h
+    include/TerminalDisplay.h
+    include/Vt102Emulation.h
 )
 
 set(UI
@@ -109,11 +109,11 @@ set(UI
 
 # for distribution
 set(HDRS_DISTRIB
-    lib/qtermwidget.h
-    lib/Emulation.h
-    lib/KeyboardTranslator.h
-    lib/Filter.h
-    lib/qtermwidget_interface.h
+    include/qtermwidget.h
+    include/Emulation.h
+    include/KeyboardTranslator.h
+    include/Filter.h
+    include/qtermwidget_interface.h
 )
 
 # dirs
@@ -218,7 +218,7 @@ generate_export_header(${QTERMWIDGET_LIBRARY_NAME}
 
 target_include_directories(${QTERMWIDGET_LIBRARY_NAME}
     PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/lib>"
     INTERFACE
         "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
@@ -282,7 +282,7 @@ configure_file(
 )
 
 configure_file(
-    "${PROJECT_SOURCE_DIR}/lib/qtermwidget_version.h.in"
+    "${PROJECT_SOURCE_DIR}/include/qtermwidget_version.h.in"
     "${CMAKE_BINARY_DIR}/lib/qtermwidget_version.h"
     @ONLY
 )

@@ -37,16 +37,13 @@ set(LXQTBT_MINIMUM_VERSION "0.13.0")
 
 find_package(Qt6Widgets "${QT_MINIMUM_VERSION}" REQUIRED)
 find_package(Qt6LinguistTools "${QT_MINIMUM_VERSION}" REQUIRED)
-find_package(lxqt2-build-tools ${LXQTBT_MINIMUM_VERSION} REQUIRED)
+
 
 if(USE_UTF8PROC)
     find_package(Utf8Proc REQUIRED)
 endif()
 
-include(LXQtPreventInSourceBuilds)
-include(LXQtTranslateTs)
-include(LXQtCompilerSettings NO_POLICY_SCOPE)
-include(LXQtCreatePkgConfigFile)
+
 
 if(APPLE)
     if(CMAKE_VERSION VERSION_GREATER 3.9)
@@ -130,21 +127,10 @@ set(QTERMWIDGET_INCLUDE_DIR "${CMAKE_INSTALL_FULL_INCLUDEDIR}/${QTERMWIDGET_LIBR
 
 CHECK_FUNCTION_EXISTS(updwtmpx HAVE_UPDWTMPX)
 
+
 qt6_wrap_cpp(MOCS ${HDRS})
 qt6_wrap_ui(UI_SRCS ${UI})
-set(PKG_CONFIG_REQ "Qt6Widgets")
 
-lxqt_translate_ts(QTERMWIDGET_QM
-    TRANSLATION_DIR "lib/translations"
-    UPDATE_TRANSLATIONS
-        ${UPDATE_TRANSLATIONS}
-    SOURCES
-        ${SRCS} ${HDRS} ${UI}
-    INSTALL_DIR
-        ${TRANSLATIONS_DIR}
-    COMPONENT
-        Runtime
-)
 
 add_library(${QTERMWIDGET_LIBRARY_NAME} STATIC ${SRCS} ${MOCS} ${UI_SRCS} ${QTERMWIDGET_QM})
 target_link_libraries(${QTERMWIDGET_LIBRARY_NAME} Qt6::Widgets)
@@ -269,17 +255,7 @@ install(DIRECTORY
     FILES_MATCHING PATTERN "*.*schem*"
 )
 
-lxqt_create_pkgconfig_file(
-    PACKAGE_NAME ${QTERMWIDGET_LIBRARY_NAME}
-    DESCRIPTIVE_NAME ${QTERMWIDGET_LIBRARY_NAME}
-    DESCRIPTION "QTermWidget library for Qt ${QTERMWIDGET_VERSION_MAJOR}.x"
-    INCLUDEDIRS ${QTERMWIDGET_LIBRARY_NAME}
-    LIBS ${QTERMWIDGET_LIBRARY_NAME}
-    REQUIRES ${PKG_CONFIG_REQ}
-    VERSION ${QTERMWIDGET_VERSION}
-    INSTALL
-    COMPONENT Devel
-)
+
 
 configure_file(
     "${PROJECT_SOURCE_DIR}/cmake/${QTERMWIDGET_LIBRARY_NAME}-config.cmake.in"
